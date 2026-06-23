@@ -158,7 +158,11 @@ The application supports both local (deterministic) and OpenAI-based LLMs. Set `
 - **AI/Agent**: LangGraph with LangChain
 - **Styling**: Tailwind CSS
 - **State Management**: Zustand
-- **Testing**: Vitest<img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/e322032b-47a5-4cbb-ab1b-a39d1eec6fdb" />
+- **Testing**: Vitest
+  
 <img width="1919" height="944" alt="image" src="https://github.com/user-attachments/assets/04dc5a87-d8ba-49b6-98bf-6bdbe0051c8b" />
+
+<img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/e322032b-47a5-4cbb-ab1b-a39d1eec6fdb" />
+
 
 - **Validation**: Zod
