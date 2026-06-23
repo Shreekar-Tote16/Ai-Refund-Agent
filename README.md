@@ -1,3 +1,5 @@
+<img width="1919" height="946" alt="image" src="https://github.com/user-attachments/assets/ec8c1fff-b06d-4af5-a5cc-e93e4f908e16" />
+<img width="1919" height="946" alt="image" src="https://github.com/user-attachments/assets/8b4e4907-2536-4fa1-ab98-6a2ba81063d0" />
 # AI Customer Support Refund Agent
 
 Production-shaped Next.js application for a refund support agent. The customer chat collects refund requests, the agent calls tools against seeded order data, deterministic policy code validates decisions, and the admin dashboard displays persisted reasoning logs.
@@ -164,6 +166,10 @@ The application supports both local (deterministic) and OpenAI-based LLMs. Set `
 <img width="1919" height="944" alt="image" src="https://github.com/user-attachments/assets/04dc5a87-d8ba-49b6-98bf-6bdbe0051c8b" />
 
 <img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/e322032b-47a5-4cbb-ab1b-a39d1eec6fdb" />
+
+<img width="1919" height="946" alt="image" src="https://github.com/user-attachments/assets/f8f350fd-36e5-45a7-8a34-a976fa8ad309" />
+
+<img width="1919" height="940" alt="image" src="https://github.com/user-attachments/assets/f3622f1b-0648-4b11-be96-dfbe43c3bbd2" />
 
 
 
