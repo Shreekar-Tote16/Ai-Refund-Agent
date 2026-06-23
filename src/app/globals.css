@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222 25% 12%;
+  --muted: 210 20% 96%;
+  --muted-foreground: 215 12% 42%;
+  --border: 214 20% 88%;
+  --primary: 172 55% 28%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 70% 45%;
+}
+
+body {
+  margin: 0;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

@@ -1,0 +1,146 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Customer {
+  id             String          @id @default(cuid())
+  name           String
+  email          String          @unique
+  phone          String?
+  orders         Order[]
+  conversations  Conversation[]
+  refundRequests RefundRequest[]
+  createdAt      DateTime        @default(now())
+}
+
+model Product {
+  id               String      @id @default(cuid())
+  name             String
+  sku              String      @unique
+  category         String
+  price            Float
+  isReturnable     Boolean     @default(true)
+  returnWindowDays Int         @default(30)
+  orderItems       OrderItem[]
+  createdAt        DateTime    @default(now())
+}
+
+model Order {
+  id             String          @id @default(cuid())
+  customer       Customer        @relation(fields: [customerId], references: [id])
+  customerId     String
+  status         String          @default("PENDING")
+  orderDate      DateTime
+  deliveryDate   DateTime?
+  totalAmount    Float
+  items          OrderItem[]
+  refundRequests RefundRequest[]
+  createdAt      DateTime        @default(now())
+
+  @@index([customerId])
+}
+
+model OrderItem {
+  id             String          @id @default(cuid())
+  order          Order           @relation(fields: [orderId], references: [id])
+  orderId        String
+  product        Product         @relation(fields: [productId], references: [id])
+  productId      String
+  quantity       Int
+  unitPrice      Float
+  refundRequests RefundRequest[]
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Conversation {
+  id         String              @id @default(cuid())
+  customer   Customer            @relation(fields: [customerId], references: [id])
+  customerId String
+  status     String              @default("OPEN")
+  messages   Message[]
+  agentLogs  AgentLog[]
+  refunds    RefundRequest[]
+  createdAt  DateTime            @default(now())
+  updatedAt  DateTime            @updatedAt
+
+  @@index([customerId])
+}
+
+model Message {
+  id             String        @id @default(cuid())
+  conversation   Conversation  @relation(fields: [conversationId], references: [id])
+  conversationId String
+  role           String
+  content        String
+  createdAt      DateTime      @default(now())
+
+  @@index([conversationId])
+}
+
+model RefundRequest {
+  id                  String        @id @default(cuid())
+  conversation        Conversation? @relation(fields: [conversationId], references: [id])
+  conversationId      String?
+  order               Order         @relation(fields: [orderId], references: [id])
+  orderId             String
+  orderItem           OrderItem?    @relation(fields: [orderItemId], references: [id])
+  orderItemId         String?
+  customer            Customer      @relation(fields: [customerId], references: [id])
+  customerId          String
+  reason              String
+  requestedAmount     Float
+  approvedAmount      Float?
+  status              String        @default("PENDING")
+  decisionRationale   String
+  policyVersion       String
+  decidedAt           DateTime?
+  overriddenByAdmin   AdminUser?    @relation(fields: [overriddenByAdminId], references: [id])
+  overriddenByAdminId String?
+  agentLogs           AgentLog[]
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  @@index([conversationId])
+  @@index([orderId])
+  @@index([orderItemId])
+  @@index([customerId])
+}
+
+model AgentLog {
+  id              String         @id @default(cuid())
+  conversation    Conversation   @relation(fields: [conversationId], references: [id])
+  conversationId  String
+  refundRequest   RefundRequest? @relation(fields: [refundRequestId], references: [id])
+  refundRequestId String?
+  stepNumber      Int
+  stepType        String
+  nodeName        String
+  summary         String
+  reasoningText   String?
+  toolName        String?
+  toolInput       String?
+  toolOutput      String?
+  policyChecks    String?
+  model           String?
+  latencyMs       Int?
+  createdAt       DateTime       @default(now())
+
+  @@index([conversationId, stepNumber])
+  @@index([refundRequestId])
+}
+
+model AdminUser {
+  id              String          @id @default(cuid())
+  email           String          @unique
+  passwordHash    String
+  name            String
+  overrides       RefundRequest[]
+  createdAt       DateTime        @default(now())
+}

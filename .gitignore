@@ -1,0 +1,13 @@
+.next
+node_modules
+dev.db
+dev.db-journal
+.env
+coverage
+dist
+node_modules
+.next
+.env
+.env.local
+.env.production
+*.log
