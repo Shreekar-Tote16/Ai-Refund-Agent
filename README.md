@@ -1,5 +1,4 @@
-<img width="1919" height="946" alt="image" src="https://github.com/user-attachments/assets/ec8c1fff-b06d-4af5-a5cc-e93e4f908e16" />
-<img width="1919" height="946" alt="image" src="https://github.com/user-attachments/assets/8b4e4907-2536-4fa1-ab98-6a2ba81063d0" />
+
 # AI Customer Support Refund Agent
 
 Production-shaped Next.js application for a refund support agent. The customer chat collects refund requests, the agent calls tools against seeded order data, deterministic policy code validates decisions, and the admin dashboard displays persisted reasoning logs.
